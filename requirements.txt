@@ -1,0 +1,8 @@
+Django==4.2
+psycopg2-binary==2.9.6
+django
+djangorestframework==3.14.0  
+django-cors-headers
+django_extensions
+ipython
+pillow
