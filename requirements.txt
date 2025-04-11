@@ -5,4 +5,4 @@ djangorestframework==3.14.0
 django-cors-headers
 django_extensions
 ipython
-pillow
+pillow                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  

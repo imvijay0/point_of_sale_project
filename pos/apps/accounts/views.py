@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from django.http import JsonResponse
+# accounts/views.py
 
-# Create your views here.
-def account_login(request):
-    return JsonResponse("Login is success from accounts",safe=False)
+from ._views.login import LoginView
+from ._views.logout import LogoutView
+from ._views.change_password import ChangePasswordView
+from ._views.franchise_admin import FranchiseAdminView
