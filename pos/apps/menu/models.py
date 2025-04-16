@@ -1,3 +1,31 @@
+# menu/models.py
 from django.db import models
+from pos.apps.locations.models import LocationModel
 
-# Create your models here.
+class CategoryModel(models.Model):
+    """Simple food categories like Breakfast, Coffee, Meals, etc."""
+    name = models.CharField(max_length=100)
+    display_order = models.PositiveIntegerField(default=0)
+    location = models.ForeignKey(LocationModel, on_delete=models.CASCADE)
+    
+    class Meta:
+        verbose_name_plural = "Categories"
+        ordering = ['display_order']
+
+    def __str__(self):
+        return self.name
+
+class MenuItemModel(models.Model):
+    """Basic menu items that can be ordered"""
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE)
+    is_available = models.BooleanField(default=True)
+    image = models.ImageField(upload_to='menu_items/', blank=True, null=True)
+    location = models.ForeignKey(LocationModel, on_delete=models.CASCADE)
+    
+    class Meta:
+        ordering = ['category__display_order', 'name']
+
+    def __str__(self):
+        return f"{self.name} - ₹{self.price}"
